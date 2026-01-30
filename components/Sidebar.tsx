@@ -14,12 +14,12 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, active, onClick }) => (
     onClick={onClick}
     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
       active 
-        ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' 
-        : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
+        ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 dark:shadow-none' 
+        : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
     }`}
   >
     {icon}
-    <span className="font-medium">{label}</span>
+    <span className="font-medium text-sm">{label}</span>
   </button>
 );
 
@@ -30,13 +30,13 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   return (
-    <div className="w-64 h-screen border-r border-slate-200 bg-white flex flex-col fixed left-0 top-0">
+    <div className="w-64 h-screen border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col fixed left-0 top-0 transition-colors duration-300">
       <div className="p-6">
         <div className="flex items-center gap-2 mb-8">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
             <Activity className="text-white w-5 h-5" />
           </div>
-          <span className="text-xl font-bold tracking-tight text-slate-900">Ambient Twin</span>
+          <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Ambient Twin</span>
         </div>
 
         <nav className="space-y-2">
@@ -85,11 +85,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           onClick={() => {}} 
         />
         
-        <div className="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-100">
-          <div className="text-xs text-slate-400 font-semibold uppercase mb-2">Technician Status</div>
+        <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+          <div className="text-[10px] text-slate-400 font-bold uppercase mb-2 tracking-widest">Technician Status</div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-medium text-slate-700">Online: Storefront Lab</span>
+            <span className="text-xs font-medium text-slate-700 dark:text-slate-300">Lab: Storefront V1</span>
           </div>
         </div>
       </div>

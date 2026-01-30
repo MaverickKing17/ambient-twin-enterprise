@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LayoutDashboard, Users, Activity, FileText, Calculator, Settings, HelpCircle, MapPin, ShieldCheck, Star } from 'lucide-react';
+import { LayoutDashboard, Users, Activity, FileText, Calculator, Settings, HelpCircle, MapPin, ShieldCheck, Star, Palette } from 'lucide-react';
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -34,7 +34,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div className="w-72 h-screen border-r border-slate-200 dark:border-white/5 bg-white dark:bg-[#0b0f1a] flex flex-col fixed left-0 top-0 z-50 transition-all duration-500">
-      <div className="p-8 pb-12">
+      <div className="p-8 pb-12 overflow-y-auto custom-scrollbar flex-1">
         <div className="flex items-center gap-4 mb-12">
           <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/30 transform -rotate-6">
             <Activity className="text-white w-7 h-7" />
@@ -76,10 +76,19 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
             active={activeTab === 'roi'} 
             onClick={() => setActiveTab('roi')}
           />
+          <div className="pt-4 pb-2">
+            <div className="h-px bg-slate-100 dark:bg-white/5 mb-4"></div>
+            <NavItem 
+              icon={<Palette className="w-5 h-5" />} 
+              label="Partner Branding" 
+              active={activeTab === 'branding'} 
+              onClick={() => setActiveTab('branding')}
+            />
+          </div>
         </nav>
       </div>
 
-      <div className="mt-auto p-8 space-y-4">
+      <div className="p-8 space-y-4">
         <div className="p-5 bg-gradient-to-br from-slate-50 to-white dark:from-white/5 dark:to-transparent rounded-3xl border border-slate-200 dark:border-white/5 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-20 h-20 bg-blue-500/10 blur-2xl rounded-full"></div>
           <div className="text-[10px] text-blue-600 dark:text-blue-400 font-black uppercase mb-3 tracking-widest flex items-center gap-2">
@@ -100,10 +109,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                 <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">SOC 2 TYPE II SECURED</span>
               </div>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">v2.4.1 Build ST-942</span>
            </div>
         </div>
       </div>
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.05); border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); }
+      `}</style>
     </div>
   );
 };

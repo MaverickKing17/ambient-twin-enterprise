@@ -2,6 +2,7 @@
   "name": "Ambient Twin - Enterprise HVAC Intelligence",
   "description": "Enterprise-grade digital twin platform for Toronto HVAC shops, featuring real-time telemetry, AI diagnostics via Gemini, and Enbridge HER+ rebate automation.",
   "requestFramePermissions": [
-    "camera"
+    "camera",
+    "geolocation"
   ]
 }

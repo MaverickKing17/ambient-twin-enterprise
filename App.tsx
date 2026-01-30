@@ -6,12 +6,16 @@ import FleetMap from './components/FleetMap';
 import ActiveJobs from './components/ActiveJobs';
 import Rebates from './components/Rebates';
 import RoiAnalytics from './components/RoiAnalytics';
+import BrandingSettings from './components/BrandingSettings';
+import Auth from './components/Auth';
 import Footer from './components/Footer';
-import { Moon, Sun, ShieldCheck } from 'lucide-react';
+import { Moon, Sun, ShieldCheck, LogOut } from 'lucide-react';
 
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -21,6 +25,16 @@ const App: React.FC = () => {
     }
   }, [isDarkMode]);
 
+  const handleLogin = (role: string) => {
+    setUserRole(role);
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUserRole(null);
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'overview': return <Dashboard />;
@@ -28,33 +42,46 @@ const App: React.FC = () => {
       case 'jobs': return <ActiveJobs />;
       case 'rebates': return <Rebates />;
       case 'roi': return <RoiAnalytics />;
+      case 'branding': return <BrandingSettings />;
       default: return <Dashboard />;
     }
   };
 
+  if (!isAuthenticated) {
+    return <Auth onLogin={handleLogin} />;
+  }
+
   return (
-    <div className="flex bg-slate-50 dark:bg-slate-950 min-h-screen transition-colors duration-300">
+    <div className="flex bg-slate-50 dark:bg-slate-950 min-h-screen transition-colors duration-300 font-['Inter']">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       
-      {/* Content Area - Offset by Sidebar width (w-72 = ml-72) */}
-      <div className="ml-72 flex-1 flex flex-col">
+      {/* Scrollable Content Container */}
+      <div className="ml-72 flex-1 flex flex-col min-h-screen relative overflow-y-auto overflow-x-hidden">
         {/* Top Floating Control Bar */}
         <div className="fixed top-4 right-8 z-[100] flex items-center gap-4">
            {/* SOC 2 Badge */}
-           <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full shadow-sm text-[10px] font-bold">
+           <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-full shadow-2xl text-[10px] font-black">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-              <span className="text-slate-500 dark:text-slate-400 uppercase tracking-tighter">Security: SOC 2 TYPE II Certified</span>
+              <span className="text-slate-500 dark:text-slate-400 uppercase tracking-widest">SECURE SESSION: {userRole?.toUpperCase()}</span>
            </div>
 
            <button 
              onClick={() => setIsDarkMode(!isDarkMode)}
-             className="p-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full shadow-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-90"
+             className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-full shadow-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-90"
            >
              {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-blue-600" />}
            </button>
+
+           <button 
+             onClick={handleLogout}
+             className="flex items-center gap-2 px-5 py-2.5 bg-rose-500 text-white rounded-full shadow-xl shadow-rose-500/20 hover:bg-rose-600 transition-all font-black text-[10px] uppercase tracking-widest active:scale-95"
+           >
+             <LogOut className="w-3.5 h-3.5" />
+             Exit
+           </button>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           {renderContent()}
         </div>
 

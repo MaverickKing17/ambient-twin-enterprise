@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="flex-1 bg-slate-50 dark:bg-[#0b0f1a] transition-colors duration-500">
+    <div className="bg-slate-50 dark:bg-[#0b0f1a] transition-colors duration-500">
       <header className="h-20 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#0b0f1a]/80 backdrop-blur-2xl sticky top-0 z-40 flex items-center justify-between px-10 shadow-sm">
         <div className="flex items-center gap-8 w-2/3">
           <div className="relative group w-full max-w-lg">
@@ -71,12 +71,12 @@ const Dashboard: React.FC = () => {
         </div>
       </header>
 
-      <main className="p-10 max-w-7xl mx-auto space-y-12 pb-24">
+      <main className="p-10 max-w-7xl mx-auto space-y-12 pb-32">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div className="space-y-1">
-            <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter flex items-center flex-wrap">
+            <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter flex items-center flex-wrap leading-[1.1]">
               Executive 
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 italic px-4 inline-block overflow-visible leading-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 italic px-4 inline-block overflow-visible">
                 Command
               </span>
             </h1>
@@ -137,7 +137,7 @@ const Dashboard: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <div className="h-[350px] w-full">
+              <div className="h-[320px] w-full relative">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={mockTelemetry}>
                     <defs>

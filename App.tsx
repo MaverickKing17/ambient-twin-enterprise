@@ -56,7 +56,7 @@ const App: React.FC = () => {
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       
       {/* Scrollable Content Container */}
-      <div className="ml-72 flex-1 flex flex-col min-h-screen relative overflow-y-auto overflow-x-hidden">
+      <div className="ml-72 flex-1 flex flex-col min-h-screen relative overflow-x-hidden">
         {/* Top Floating Control Bar */}
         <div className="fixed top-4 right-8 z-[100] flex items-center gap-4">
            {/* SOC 2 Badge */}
@@ -81,10 +81,12 @@ const App: React.FC = () => {
            </button>
         </div>
 
+        {/* Main Viewport */}
         <div className="flex-1 w-full">
           {renderContent()}
         </div>
 
+        {/* Persistent Enterprise Footer */}
         <Footer />
       </div>
     </div>

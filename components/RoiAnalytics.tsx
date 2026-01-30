@@ -1,107 +1,167 @@
 
-import React from 'react';
-import { DollarSign, TrendingUp, BarChart3, ArrowRight, Zap, Flame } from 'lucide-react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
+import React, { useState } from 'react';
+import { DollarSign, TrendingUp, BarChart3, ArrowRight, Zap, Flame, Target, Info, RefreshCcw } from 'lucide-react';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell, ComposedChart, Line } from 'recharts';
 
 const RoiAnalytics: React.FC = () => {
+  const [laborRate, setLaborRate] = useState(125); // Default GTA Tech Rate
+
   const data = [
-    { year: 'Year 1', savings: 1200, cumulative: 8300 }, // Inc. Grant
-    { year: 'Year 2', savings: 1350, cumulative: 9650 },
-    { year: 'Year 3', savings: 1500, cumulative: 11150 },
-    { year: 'Year 4', savings: 1700, cumulative: 12850 },
-    { year: 'Year 5', savings: 1950, cumulative: 14800 },
+    { year: '2024', savings: 1200, cumulative: 8300, projections: 8300 },
+    { year: '2025', savings: 1350, cumulative: 9650, projections: 10500 },
+    { year: '2026', savings: 1500, cumulative: 11150, projections: 12800 },
+    { year: '2027', savings: 1700, cumulative: 12850, projections: 15400 },
+    { year: '2028', savings: 1950, cumulative: 14800, projections: 18900 },
   ];
 
   const costComparison = [
-    { name: 'Nat Gas (Toronto)', cost: 180, fill: '#f87171' },
-    { name: 'CCHP Hybrid', cost: 110, fill: '#60a5fa' },
-    { name: 'Standard AC', cost: 145, fill: '#94a3b8' },
+    { name: 'Nat Gas (Toronto)', cost: 240, fill: '#f87171' },
+    { name: 'CCHP Hybrid', cost: 135, fill: '#60a5fa' },
+    { name: 'Standard AC', cost: 185, fill: '#94a3b8' },
   ];
 
   return (
-    <div className="p-8 space-y-8">
-      <div className="flex justify-between items-center">
+    <div className="p-10 space-y-12 bg-slate-50 dark:bg-[#0b0f1a] min-h-screen">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
-          <h1 className="text-3xl font-bold">ROI Analytics</h1>
-          <p className="text-slate-500 dark:text-slate-400">Toronto-specific energy modeling and pay-back projections.</p>
+          <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter">
+            ROI <span className="text-blue-600 italic">Modeling</span>
+          </h1>
+          <p className="text-slate-500 dark:text-slate-400 font-medium text-lg mt-2">Precision financial forecasting for Toronto's green energy transition.</p>
         </div>
-        <div className="flex gap-2">
-           <div className="bg-white dark:bg-slate-900 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-2 text-xs font-bold">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              Toronto Hydro: $0.103/kWh (Off-Peak)
+        <div className="flex flex-col items-end gap-3">
+           <div className="bg-white dark:bg-white/5 px-6 py-3 rounded-2xl border border-slate-200 dark:border-white/10 flex items-center gap-4 shadow-sm">
+              <div className="text-right">
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">GTA Tech Rate</div>
+                <div className="text-lg font-black text-slate-900 dark:text-white">${laborRate}/hr</div>
+              </div>
+              <input 
+                type="range" min="80" max="250" value={laborRate} 
+                onChange={(e) => setLaborRate(parseInt(e.target.value))}
+                className="w-32 accent-blue-600"
+              />
+           </div>
+           <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+              <RefreshCcw className="w-3 h-3" />
+              Syncing Toronto Hydro Rates (May 2024 Update)
            </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
-          <div className="flex justify-between items-center mb-8">
-            <h3 className="font-bold text-lg">Cumulative Savings Projection</h3>
-            <div className="text-emerald-500 font-bold text-sm flex items-center gap-1">
-              <TrendingUp className="w-4 h-4" />
-              +14% YoY
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="lg:col-span-2 space-y-10">
+          <div className="bg-white dark:bg-white/5 p-10 rounded-[2.5rem] border border-slate-200 dark:border-white/5 shadow-2xl relative group">
+            <div className="flex justify-between items-center mb-10">
+              <div>
+                <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Cumulative 10yr Profitability</h3>
+                <p className="text-sm font-medium text-slate-500">Includes $7,100 HER+ Grant disbursement in Year 1.</p>
+              </div>
+              <div className="flex items-center gap-2 bg-emerald-500/10 text-emerald-500 px-4 py-2 rounded-full text-xs font-black uppercase tracking-tighter">
+                <TrendingUp className="w-4 h-4" />
+                Aggressive Mode Active
+              </div>
             </div>
-          </div>
-          <div className="h-[300px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={data}>
-                <defs>
-                  <linearGradient id="colorSav" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.1}/>
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                <XAxis dataKey="year" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
-                <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
-                <Tooltip 
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
-                />
-                <Area type="monotone" dataKey="cumulative" stroke="#10b981" fillOpacity={1} fill="url(#colorSav)" strokeWidth={3} />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="mt-8 flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl">
-             <div>
-                <div className="text-[10px] text-slate-400 font-bold uppercase mb-1">Break-Even Point</div>
-                <div className="text-xl font-bold">3.8 Years</div>
-             </div>
-             <ArrowRight className="text-slate-300" />
-             <div className="text-right">
-                <div className="text-[10px] text-slate-400 font-bold uppercase mb-1">Net 10yr Profit</div>
-                <div className="text-xl font-bold text-emerald-500">$22,400</div>
-             </div>
+            <div className="h-[400px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart data={data}>
+                  <defs>
+                    <linearGradient id="colorSav" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.2}/>
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="5 5" vertical={false} stroke="#94a3b822" />
+                  <XAxis dataKey="year" stroke="#64748b" fontSize={11} fontWeight="black" tickLine={false} axisLine={false} dy={10} />
+                  <YAxis stroke="#64748b" fontSize={11} fontWeight="black" tickLine={false} axisLine={false} dx={-10} />
+                  <Tooltip 
+                    contentStyle={{ borderRadius: '24px', border: 'none', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)', background: '#0f172a', color: 'white' }}
+                  />
+                  <Area type="monotone" dataKey="cumulative" stroke="#10b981" strokeWidth={5} fillOpacity={1} fill="url(#colorSav)" />
+                  <Line type="monotone" dataKey="projections" stroke="#3b82f6" strokeWidth={2} strokeDasharray="10 10" dot={false} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+               <div className="p-6 bg-slate-50 dark:bg-white/5 rounded-3xl border border-slate-100 dark:border-white/5">
+                  <div className="text-[10px] text-slate-400 font-black uppercase mb-1">Payback Period</div>
+                  <div className="text-3xl font-black text-slate-900 dark:text-white">3.2 Years</div>
+               </div>
+               <div className="p-6 bg-emerald-500/10 rounded-3xl border border-emerald-500/20">
+                  <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-black uppercase mb-1">Lifetime Savings</div>
+                  <div className="text-3xl font-black text-emerald-600">$34,800</div>
+               </div>
+               <div className="p-6 bg-blue-600 rounded-3xl shadow-xl shadow-blue-600/20">
+                  <div className="text-[10px] text-white/70 font-black uppercase mb-1">Asset Value Growth</div>
+                  <div className="text-3xl font-black text-white">+8.2%</div>
+               </div>
+            </div>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
-           <h3 className="font-bold text-lg mb-8">Monthly Operating Cost Comparison</h3>
-           <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={costComparison} layout="vertical" margin={{ left: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#f1f5f9" />
-                  <XAxis type="number" hide />
-                  <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
-                  <Tooltip />
-                  <Bar dataKey="cost" radius={[0, 4, 4, 0]} barSize={32}>
-                    {costComparison.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.fill} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
+        <div className="space-y-10">
+           <div className="bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden text-white border border-white/5">
+              <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-blue-600/10 blur-[80px] rounded-full"></div>
+              <h3 className="text-2xl font-black mb-8 flex items-center gap-4">
+                 <Target className="text-blue-400 w-8 h-8" />
+                 Market Cost Delta
+              </h3>
+              <div className="h-[250px] mb-8">
+                 <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={costComparison} layout="vertical" margin={{ left: -30 }}>
+                      <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#ffffff11" />
+                      <XAxis type="number" hide />
+                      <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={10} fontWeight="black" tickLine={false} axisLine={false} />
+                      <Tooltip 
+                        cursor={{fill: '#ffffff05'}}
+                        contentStyle={{ borderRadius: '16px', background: '#1e293b', border: 'none' }}
+                      />
+                      <Bar dataKey="cost" radius={[0, 8, 8, 0]} barSize={28}>
+                        {costComparison.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.fill} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                 </ResponsiveContainer>
+              </div>
+              <div className="space-y-6">
+                 <div className="p-5 rounded-2xl bg-white/5 border border-white/10 group hover:bg-white/10 transition-all cursor-pointer">
+                    <div className="flex justify-between items-center mb-2">
+                       <span className="text-xs font-black uppercase tracking-widest text-slate-400">Monthly Burn</span>
+                       <Flame className="text-red-400 w-4 h-4" />
+                    </div>
+                    <div className="text-2xl font-black text-white">$240.00 <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">GTA Avg Gas</span></div>
+                 </div>
+                 <div className="p-5 rounded-2xl bg-blue-600/20 border border-blue-500/30 group hover:bg-blue-600/30 transition-all cursor-pointer">
+                    <div className="flex justify-between items-center mb-2">
+                       <span className="text-xs font-black uppercase tracking-widest text-blue-300">Hybrid Op-Cost</span>
+                       <Zap className="text-blue-400 w-4 h-4 fill-current" />
+                    </div>
+                    <div className="text-2xl font-black text-white">$135.00 <span className="text-[10px] text-blue-300 font-bold uppercase tracking-widest">Elec. Only</span></div>
+                 </div>
+              </div>
            </div>
-           <div className="mt-8 grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl border border-red-100 dark:border-red-900/30 bg-red-50 dark:bg-red-900/10">
-                 <Flame className="w-5 h-5 text-red-500 mb-2" />
-                 <div className="text-lg font-bold text-red-700 dark:text-red-400">$180/mo</div>
-                 <div className="text-[10px] font-bold text-red-500 uppercase tracking-tighter">Avg Natural Gas Bill</div>
+
+           <div className="bg-white dark:bg-white/5 p-10 rounded-[2.5rem] border border-slate-200 dark:border-white/5 shadow-xl">
+              <h4 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-3">
+                 <Info className="w-5 h-5 text-blue-500" />
+                 Strategic Variables
+              </h4>
+              <div className="space-y-4">
+                 {[
+                    { label: 'Carbon Tax Offset (2030)', val: '+$1.4k/yr' },
+                    { label: 'TSSA Maintenance Load', val: '-15%' },
+                    { label: 'Enbridge Tier-1 Rebate', val: 'Verified' },
+                    { label: 'Asset Lifecycle Extension', val: '+4 Years' },
+                 ].map((v, i) => (
+                   <div key={i} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-white/5 rounded-2xl border border-slate-100 dark:border-white/5">
+                      <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-tight">{v.label}</span>
+                      <span className="text-xs font-black text-slate-900 dark:text-white">{v.val}</span>
+                   </div>
+                 ))}
               </div>
-              <div className="p-4 rounded-2xl border border-blue-100 dark:border-blue-900/30 bg-blue-50 dark:bg-blue-900/10">
-                 <Zap className="w-5 h-5 text-blue-500 mb-2" />
-                 <div className="text-lg font-bold text-blue-700 dark:text-blue-400">$110/mo</div>
-                 <div className="text-[10px] font-bold text-blue-500 uppercase tracking-tighter">Heat Pump Electrical</div>
-              </div>
+              <button className="w-full mt-8 py-5 bg-slate-900 dark:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-blue-500/20 hover:scale-[1.02] transition-all">
+                 Generate Board Proposal
+              </button>
            </div>
         </div>
       </div>

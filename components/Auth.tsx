@@ -16,12 +16,17 @@ const Auth: React.FC<AuthProps> = ({ onLogin }) => {
   ];
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[#0b0f1a] relative overflow-hidden font-['Inter']">
-      {/* Cinematic Background Elements */}
+    <div className="min-h-screen w-full flex items-center justify-center bg-[#0d1421] relative overflow-hidden font-['Inter']">
+      {/* Cinematic Background Elements: Thermodynamic Themed */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-900/20 blur-[150px] rounded-full"></div>
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10 grayscale"></div>
+        {/* Cooling Blue Accent */}
+        <div className="absolute top-[-5%] left-[-5%] w-[45%] h-[45%] bg-blue-500/15 blur-[120px] rounded-full"></div>
+        {/* Heating Amber/Red Accent */}
+        <div className="absolute bottom-[-10%] right-[-10%] w-[55%] h-[55%] bg-orange-600/10 blur-[150px] rounded-full"></div>
+        {/* Mid-tone Transition */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-blue-900/5 to-transparent pointer-events-none"></div>
+        
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-[0.07] grayscale"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-6xl flex flex-col md:flex-row gap-12 p-6 md:p-12 items-center">

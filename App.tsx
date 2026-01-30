@@ -36,8 +36,8 @@ const App: React.FC = () => {
     <div className="flex bg-slate-50 dark:bg-slate-950 min-h-screen transition-colors duration-300">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       
-      {/* Content Area - Offset by Sidebar width */}
-      <div className="ml-64 flex-1 flex flex-col">
+      {/* Content Area - Offset by Sidebar width (w-72 = ml-72) */}
+      <div className="ml-72 flex-1 flex flex-col">
         {/* Top Floating Control Bar */}
         <div className="fixed top-4 right-8 z-[100] flex items-center gap-4">
            {/* SOC 2 Badge */}
@@ -48,7 +48,7 @@ const App: React.FC = () => {
 
            <button 
              onClick={() => setIsDarkMode(!isDarkMode)}
-             className="p-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full shadow-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+             className="p-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full shadow-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all active:scale-90"
            >
              {isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-blue-600" />}
            </button>

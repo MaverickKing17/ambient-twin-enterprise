@@ -19,7 +19,7 @@ const FleetMap: React.FC = () => {
           <p className="text-slate-500 dark:text-slate-400">Live geolocation of IoT-connected furnace/AC units across the Golden Horseshoe.</p>
         </div>
         <div className="flex gap-2">
-           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold shadow-lg shadow-blue-200 dark:shadow-none">Refresh Satellite Data</button>
+           <button className="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-200 dark:shadow-none hover:bg-blue-700 transition-all active:scale-95">Refresh Satellite Data</button>
         </div>
       </div>
 

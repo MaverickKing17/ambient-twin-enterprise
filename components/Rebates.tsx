@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Award, FileText, CheckCircle2, Clock, Calculator, Download, AlertCircle } from 'lucide-react';
+import { Award, FileText, CheckCircle2, Clock, Calculator, Download, AlertCircle, ChevronDown } from 'lucide-react';
 
 const Rebates: React.FC = () => {
   const applications = [
@@ -82,26 +82,28 @@ const Rebates: React.FC = () => {
                  Rebate Estimator
               </h3>
               <div className="space-y-4">
-                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                 <div className="relative p-4 bg-white/5 rounded-2xl border border-white/10 group">
                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1 block">Primary Heat Source</label>
-                    <select className="bg-transparent border-none text-sm font-semibold w-full focus:ring-0">
-                       <option>Cold Climate Heat Pump (CCHP)</option>
-                       <option>Standard Heat Pump</option>
-                       <option>Furnace + AC Combo</option>
+                    <select className="appearance-none bg-transparent border-none text-sm font-semibold w-full focus:ring-0 cursor-pointer pr-10 dark:bg-slate-900 outline-none">
+                       <option className="bg-slate-900 text-white">Cold Climate Heat Pump (CCHP)</option>
+                       <option className="bg-slate-900 text-white">Standard Heat Pump</option>
+                       <option className="bg-slate-900 text-white">Furnace + AC Combo</option>
                     </select>
+                    <ChevronDown className="absolute right-4 bottom-4 w-4 h-4 text-slate-400 pointer-events-none group-hover:text-white transition-colors" />
                  </div>
-                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                 <div className="relative p-4 bg-white/5 rounded-2xl border border-white/10 group">
                     <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1 block">Attic Insulation (Existing)</label>
-                    <select className="bg-transparent border-none text-sm font-semibold w-full focus:ring-0">
-                       <option>Under R12</option>
-                       <option>R12 - R30</option>
-                       <option>Over R30</option>
+                    <select className="appearance-none bg-transparent border-none text-sm font-semibold w-full focus:ring-0 cursor-pointer pr-10 dark:bg-slate-900 outline-none">
+                       <option className="bg-slate-900 text-white">Under R12</option>
+                       <option className="bg-slate-900 text-white">R12 - R30</option>
+                       <option className="bg-slate-900 text-white">Over R30</option>
                     </select>
+                    <ChevronDown className="absolute right-4 bottom-4 w-4 h-4 text-slate-400 pointer-events-none group-hover:text-white transition-colors" />
                  </div>
                  <div className="mt-8 pt-6 border-t border-white/10 text-center">
                     <div className="text-3xl font-bold text-emerald-400 mb-1">$7,100</div>
                     <p className="text-[10px] text-slate-400 font-medium">Estimated Enbridge HER+ Grant</p>
-                    <button className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-all">Start Application</button>
+                    <button className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20 active:scale-95">Start Application</button>
                  </div>
               </div>
            </div>

@@ -50,10 +50,10 @@ const Dashboard: React.FC = () => {
         
         <div className="flex items-center gap-8">
           <div className="flex gap-4">
-             <button className="p-3 text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all relative">
+             <button className="p-3 text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all relative active:scale-95">
                 <Zap className="w-5 h-5" />
              </button>
-             <button className="p-3 text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all relative">
+             <button className="p-3 text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all relative active:scale-95">
                 <Bell className="w-5 h-5" />
                 <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-white dark:border-[#0b0f1a]"></span>
              </button>
@@ -63,8 +63,8 @@ const Dashboard: React.FC = () => {
               <div className="text-sm font-extrabold text-slate-900 dark:text-white">Dave Henderson</div>
               <div className="text-[9px] text-blue-600 dark:text-blue-400 uppercase tracking-widest font-black">Executive Director • GTA</div>
             </div>
-            <div className="relative">
-              <img src="https://picsum.photos/seed/tech/80/80" className="w-12 h-12 rounded-2xl border-2 border-white dark:border-slate-800 shadow-xl" alt="Executive Profile" />
+            <div className="relative cursor-pointer group">
+              <img src="https://picsum.photos/seed/tech/80/80" className="w-12 h-12 rounded-2xl border-2 border-white dark:border-slate-800 shadow-xl group-hover:border-blue-500 transition-colors" alt="Executive Profile" />
               <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full"></div>
             </div>
           </div>
@@ -75,16 +75,16 @@ const Dashboard: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div className="space-y-1">
             <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter">
-              Executive <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 italic">Command</span>
+              Executive <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 italic pr-4">Command</span>
             </h1>
             <p className="text-slate-500 dark:text-slate-400 font-medium text-lg">Cross-GTA installation health & grant automation engine.</p>
           </div>
           <div className="flex gap-4 w-full md:w-auto">
-            <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm transition-all">
+            <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm transition-all active:scale-95">
               <Download className="w-4 h-4" />
               Audit Bundle
             </button>
-            <button className="flex-1 md:flex-none bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/20 text-sm flex items-center justify-center gap-3">
+            <button className="flex-1 md:flex-none bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/20 text-sm flex items-center justify-center gap-3 active:scale-95 active:shadow-inner">
               <Target className="w-4 h-4" />
               Optimize Fleet
             </button>
@@ -98,7 +98,7 @@ const Dashboard: React.FC = () => {
             { label: 'Avg ROI Acceleration', value: '3.1x', sub: 'Local Labor Adjusted', icon: <DollarSign className="text-emerald-600" />, color: 'bg-emerald-50 dark:bg-emerald-500/10' },
             { label: 'SLA Compliant Dispatch', value: '99.1%', sub: 'Avg 12m Dispatch', icon: <Clock className="text-indigo-600" />, color: 'bg-indigo-50 dark:bg-indigo-500/10' }
           ].map((stat, i) => (
-            <div key={i} className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-200 dark:border-white/5 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl hover:border-blue-500/30 group">
+            <div key={i} className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-200 dark:border-white/5 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl hover:border-blue-500/30 group cursor-pointer">
               <div className="flex justify-between items-start mb-6">
                 <div className={`p-4 rounded-2xl ${stat.color} group-hover:scale-110 transition-transform`}>
                   {stat.icon}
@@ -128,7 +128,7 @@ const Dashboard: React.FC = () => {
                 </div>
                 <div className="flex gap-2 p-1 bg-slate-100 dark:bg-white/5 rounded-xl">
                   {['24H', '7D', '30D', '1Y'].map(v => (
-                    <button key={v} className={`px-4 py-2 rounded-lg text-[10px] font-black transition-all ${v === '24H' ? 'bg-white dark:bg-blue-600 text-blue-600 dark:text-white shadow-md' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>
+                    <button key={v} className={`px-4 py-2 rounded-lg text-[10px] font-black transition-all active:scale-95 ${v === '24H' ? 'bg-white dark:bg-blue-600 text-blue-600 dark:text-white shadow-md' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>
                       {v}
                     </button>
                   ))}
@@ -181,7 +181,7 @@ const Dashboard: React.FC = () => {
                   <p className="text-blue-100/70 text-sm font-medium leading-relaxed px-4">Executive summary of thermodynamic behavior cross-referenced with environment variables.</p>
                   <button 
                     onClick={runGeminiDiagnosis}
-                    className="w-full bg-white text-blue-900 py-5 rounded-2xl font-black hover:bg-blue-50 transition-all shadow-2xl shadow-black/30 text-xs uppercase tracking-widest flex items-center justify-center gap-4 group"
+                    className="w-full bg-white text-blue-900 py-5 rounded-2xl font-black hover:bg-blue-50 transition-all shadow-2xl shadow-black/30 text-xs uppercase tracking-widest flex items-center justify-center gap-4 group active:scale-95"
                   >
                     Initiate Strategic Audit
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -202,7 +202,7 @@ const Dashboard: React.FC = () => {
                   </div>
                   <button 
                     onClick={() => setAiAnalysis(null)}
-                    className="w-full py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10"
+                    className="w-full py-4 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border border-white/10 active:scale-95"
                   >
                     Re-Analyze Data Point
                   </button>
@@ -223,20 +223,20 @@ const Dashboard: React.FC = () => {
                   { label: 'HRAI Verification', status: 'active' },
                   { label: 'Fund Disbursement', status: 'pending' },
                 ].map((step, i) => (
-                  <div key={i} className="flex items-center gap-5">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black shadow-lg ${
+                  <div key={i} className="flex items-center gap-5 cursor-pointer group">
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black shadow-lg transition-transform group-hover:scale-110 ${
                       step.status === 'completed' ? 'bg-emerald-500 text-white' : 
                       step.status === 'active' ? 'bg-blue-600 text-white ring-4 ring-blue-500/20' : 'bg-slate-200 dark:bg-white/10 text-slate-500'
                     }`}>
                       {step.status === 'completed' ? '✓' : i + 1}
                     </div>
-                    <span className={`text-sm font-bold tracking-tight ${step.status === 'pending' ? 'text-slate-400' : 'text-slate-900 dark:text-slate-100'}`}>
+                    <span className={`text-sm font-bold tracking-tight group-hover:text-blue-500 transition-colors ${step.status === 'pending' ? 'text-slate-400' : 'text-slate-900 dark:text-slate-100'}`}>
                       {step.label}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="mt-10 p-6 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-3xl text-center relative overflow-hidden group">
+              <div className="mt-10 p-6 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 rounded-3xl text-center relative overflow-hidden group hover:border-emerald-500/30 transition-colors cursor-help">
                 <div className="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
                 <div className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-2">Total Grant Eligibility</div>
                 <div className="text-4xl font-black text-slate-900 dark:text-white">$10,600 <span className="text-xs text-slate-500 font-bold uppercase">CAD</span></div>

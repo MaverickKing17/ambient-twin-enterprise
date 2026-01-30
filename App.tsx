@@ -7,6 +7,7 @@ import ActiveJobs from './components/ActiveJobs';
 import Rebates from './components/Rebates';
 import RoiAnalytics from './components/RoiAnalytics';
 import BrandingSettings from './components/BrandingSettings';
+import ComplianceHub from './components/ComplianceHub';
 import Auth from './components/Auth';
 import Footer from './components/Footer';
 import { Moon, Sun, ShieldCheck, LogOut } from 'lucide-react';
@@ -43,6 +44,7 @@ const App: React.FC = () => {
       case 'rebates': return <Rebates />;
       case 'roi': return <RoiAnalytics />;
       case 'branding': return <BrandingSettings />;
+      case 'compliance': return <ComplianceHub />;
       default: return <Dashboard />;
     }
   };
@@ -59,10 +61,16 @@ const App: React.FC = () => {
       <div className="ml-72 flex-1 flex flex-col min-h-screen relative overflow-x-hidden">
         {/* Top Floating Control Bar */}
         <div className="fixed top-4 right-8 z-[100] flex items-center gap-4">
-           {/* SOC 2 Badge */}
-           <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-full shadow-2xl text-[10px] font-black">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-              <span className="text-slate-500 dark:text-slate-400 uppercase tracking-widest">SECURE SESSION: {userRole?.toUpperCase()}</span>
+           {/* SOC 2 & IESO Badge */}
+           <div className="hidden lg:flex items-center gap-3 px-5 py-2.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-full shadow-2xl shadow-blue-500/10 text-[10px] font-black">
+              <div className="flex items-center gap-1.5 border-r border-slate-200 dark:border-white/10 pr-3 mr-3">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+                <span className="text-slate-500 dark:text-slate-400 uppercase tracking-widest">SOC 2 COMPLIANT</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <span className="text-slate-500 dark:text-slate-400 uppercase tracking-widest">IESO HUB: ACTIVE</span>
+              </div>
            </div>
 
            <button 
@@ -87,7 +95,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Persistent Enterprise Footer */}
-        <Footer />
+        <Footer onNavigate={setActiveTab} />
       </div>
     </div>
   );

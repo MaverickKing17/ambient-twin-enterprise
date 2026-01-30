@@ -4,23 +4,23 @@ import { Clock, CheckCircle, AlertCircle, Wrench, MoreHorizontal, Calendar } fro
 
 const ActiveJobs: React.FC = () => {
   const jobs = [
-    { id: 'JOB-9021', customer: 'Sarah Jenkins', address: '452 Leslie St, Toronto', type: 'Full CCHP Swap', status: 'In Progress', priority: 'High', tech: 'Marcus V.', time: 'Started 2h ago' },
-    { id: 'JOB-8842', customer: 'Robert Chen', address: '12-88 Eglinton Ave E, North York', type: 'Furnace Repair', status: 'En Route', priority: 'Urgent', tech: 'Leo S.', time: 'ETA 14:15' },
-    { id: 'JOB-9103', customer: 'Priya Sharma', address: '2022 Bloor St W, High Park', type: 'Pre-Audit HER+', status: 'Scheduled', priority: 'Medium', tech: 'Dave H.', time: 'Tomorrow 09:00' },
-    { id: 'JOB-8731', customer: 'Gordon Ramsay', address: '77 King St W, Financial District', type: 'AC Optimization', status: 'Completed', priority: 'Low', tech: 'Sarah L.', time: 'Today 11:30' },
-    { id: 'JOB-9215', customer: 'Linda Wu', address: '150 Burnhamthorpe Rd W, Mississauga', type: 'Heat Pump Retrofit', status: 'Parts Pending', priority: 'Medium', tech: 'Marcus V.', time: 'Est. 2 days' },
+    { id: 'JOB-9021', customer: 'Sarah Jenkins', address: '452 Leslie St, Toronto', type: 'Heat Pump Install', status: 'Working', priority: 'High', tech: 'Marcus V.', time: 'Started 2h ago' },
+    { id: 'JOB-8842', customer: 'Robert Chen', address: '12-88 Eglinton Ave E, North York', type: 'Furnace Fix', status: 'On the Way', priority: 'Urgent', tech: 'Leo S.', time: 'ETA 14:15' },
+    { id: 'JOB-9103', customer: 'Priya Sharma', address: '2022 Bloor St W, High Park', type: 'Energy Check', status: 'Planned', priority: 'Medium', tech: 'Dave H.', time: 'Tomorrow 09:00' },
+    { id: 'JOB-8731', customer: 'Gordon Ramsay', address: '77 King St W, Toronto', type: 'System Tuning', status: 'Done', priority: 'Low', tech: 'Sarah L.', time: 'Today 11:30' },
+    { id: 'JOB-9215', customer: 'Linda Wu', address: '150 Burnhamthorpe Rd W, Mississauga', type: 'Upgrade Work', status: 'Waiting for Parts', priority: 'Medium', tech: 'Marcus V.', time: 'Est. 2 days' },
   ];
 
   return (
     <div className="p-8 space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">Active Jobs</h1>
-          <p className="text-slate-500 dark:text-slate-400">Manage ongoing field operations and technician dispatching.</p>
+          <h1 className="text-3xl font-bold">Current Work</h1>
+          <p className="text-slate-500 dark:text-slate-400">Manage ongoing home comfort jobs and team schedules.</p>
         </div>
         <button className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-200 dark:shadow-none hover:bg-blue-700 transition-all flex items-center gap-2">
           <Wrench className="w-4 h-4" />
-          Dispatch New Job
+          Assign New Job
         </button>
       </div>
 
@@ -29,12 +29,12 @@ const ActiveJobs: React.FC = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
-                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Job Details</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Type & Location</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Technician</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Customer</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Work & Location</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Team Member</th>
                 <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Priority</th>
                 <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</th>
-                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Action</th>
+                <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -67,9 +67,9 @@ const ActiveJobs: React.FC = () => {
                   </td>
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-2">
-                      {job.status === 'In Progress' && <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>}
-                      {job.status === 'Completed' && <CheckCircle className="w-3 h-3 text-green-500" />}
-                      {job.status === 'Parts Pending' && <AlertCircle className="w-3 h-3 text-amber-500" />}
+                      {job.status === 'Working' && <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>}
+                      {job.status === 'Done' && <CheckCircle className="w-3 h-3 text-green-500" />}
+                      {job.status === 'Waiting for Parts' && <AlertCircle className="w-3 h-3 text-amber-500" />}
                       <span className="text-xs font-semibold">{job.status}</span>
                     </div>
                     <div className="text-[10px] text-slate-400 flex items-center gap-1 mt-1">

@@ -1,6 +1,15 @@
 {
-  "name": "Ambient Twin - Enterprise HVAC Intelligence",
-  "description": "Enterprise-grade digital twin platform for Toronto HVAC shops, featuring real-time telemetry, AI diagnostics via Gemini, and Enbridge HER+ rebate automation.",
+  "name": "Ambient Twin - Home Heating & Cooling Data",
+  "description": "Ambient Twin is a tool that creates computer models to track home heating and cooling systems in the Toronto area. It follows Ontario power grid rules and helps automate home energy rebates and safety checks.",
+  "keywords": [
+    "Heating and Cooling Models",
+    "Ontario Grid Power Data",
+    "Toronto Home Rebates",
+    "Energy Grant Automation",
+    "Smart System Data",
+    "Safety Authority Checks",
+    "Privacy Protected Data"
+  ],
   "requestFramePermissions": [
     "camera",
     "geolocation"

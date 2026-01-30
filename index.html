@@ -4,9 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambient Twin | Enterprise HVAC Intelligence</title>
+    <title>Ambient Twin | Home Heating & Cooling Data</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- AI-SEO Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ambient Twin",
+      "operatingSystem": "Web-based",
+      "applicationCategory": "Home Energy Tools",
+      "description": "A tool for tracking home heating and cooling performance, following Ontario power rules, and getting home energy rebates in Toronto.",
+      "offers": {
+        "@type": "Offer",
+        "price": "Contact for Pricing",
+        "priceCurrency": "CAD"
+      },
+      "featureList": [
+        "Ontario Power Grid Data",
+        "Home Energy Rebate Help",
+        "Live Heating and Cooling Tracking",
+        "Smart Problem Solving",
+        "Safety License Checks"
+      ]
+    }
+    </script>
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -28,6 +51,10 @@
         body { font-family: 'Inter', sans-serif; transition: background-color 0.3s ease; }
         .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
         .dark .glass { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); }
     </style>
 <script type="importmap">
 {

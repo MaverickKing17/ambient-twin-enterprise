@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LayoutDashboard, Users, Activity, FileText, Calculator, Settings, HelpCircle, MapPin, ShieldCheck, Star, Palette } from 'lucide-react';
+import { LayoutDashboard, Users, Activity, FileText, Calculator, Settings, HelpCircle, MapPin, ShieldCheck, Star, Palette, Gavel } from 'lucide-react';
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -41,38 +41,38 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           </div>
           <div>
             <span className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white">Ambient <span className="text-blue-600 italic">Twin</span></span>
-            <div className="text-[10px] font-black text-blue-500/70 uppercase tracking-[0.2em] -mt-1">Enterprise Console</div>
+            <div className="text-[10px] font-black text-blue-500/70 uppercase tracking-[0.2em] -mt-1">Main Control</div>
           </div>
         </div>
 
         <nav className="space-y-3">
           <NavItem 
             icon={<LayoutDashboard className="w-5 h-5" />} 
-            label="Executive View" 
+            label="Overview" 
             active={activeTab === 'overview'} 
             onClick={() => setActiveTab('overview')}
           />
           <NavItem 
             icon={<MapPin className="w-5 h-5" />} 
-            label="GTA Fleet Map" 
+            label="Toronto Map" 
             active={activeTab === 'map'} 
             onClick={() => setActiveTab('map')}
           />
           <NavItem 
             icon={<Users className="w-5 h-5" />} 
-            label="Project Hub" 
+            label="Work Progress" 
             active={activeTab === 'jobs'} 
             onClick={() => setActiveTab('jobs')}
           />
           <NavItem 
             icon={<FileText className="w-5 h-5" />} 
-            label="HER+ Automator" 
+            label="Rebate Manager" 
             active={activeTab === 'rebates'} 
             onClick={() => setActiveTab('rebates')}
           />
           <NavItem 
             icon={<Calculator className="w-5 h-5" />} 
-            label="ROI Modeling" 
+            label="Savings Calculator" 
             active={activeTab === 'roi'} 
             onClick={() => setActiveTab('roi')}
           />
@@ -80,9 +80,15 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
             <div className="h-px bg-slate-100 dark:bg-white/5 mb-4"></div>
             <NavItem 
               icon={<Palette className="w-5 h-5" />} 
-              label="Partner Branding" 
+              label="Branding" 
               active={activeTab === 'branding'} 
               onClick={() => setActiveTab('branding')}
+            />
+            <NavItem 
+              icon={<Gavel className="w-5 h-5" />} 
+              label="Safety & Rules" 
+              active={activeTab === 'compliance'} 
+              onClick={() => setActiveTab('compliance')}
             />
           </div>
         </nav>
@@ -93,31 +99,25 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
           <div className="absolute -right-4 -top-4 w-20 h-20 bg-blue-500/10 blur-2xl rounded-full"></div>
           <div className="text-[10px] text-blue-600 dark:text-blue-400 font-black uppercase mb-3 tracking-widest flex items-center gap-2">
             <Star className="w-3 h-3 fill-current" />
-            Active Dispatch
+            Active Team
           </div>
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
-            <span className="text-xs font-bold text-slate-700 dark:text-slate-200 tracking-tight">Main Hub: North York</span>
+            <span className="text-xs font-bold text-slate-700 dark:text-slate-200 tracking-tight">Ontario Grid: Connected</span>
           </div>
-          <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-2 font-medium">9 active field techs synced</p>
+          <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-2 font-medium">9 team members active</p>
         </div>
         
         <div className="flex flex-col gap-2">
-           <NavItem icon={<Settings className="w-5 h-5" />} label="Security & Config" onClick={() => {}} />
+           <NavItem icon={<Settings className="w-5 h-5" />} label="Security Settings" onClick={() => {}} />
            <div className="pt-4 border-t border-slate-100 dark:border-white/5 flex flex-col items-center gap-3">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 rounded-full border border-emerald-500/20">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-                <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">SOC 2 TYPE II SECURED</span>
+                <span className="text-[9px] font-black text-emerald-600 uppercase tracking-tighter">SAFETY APPROVED</span>
               </div>
            </div>
         </div>
       </div>
-      <style>{`
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.05); border-radius: 10px; }
-        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); }
-      `}</style>
     </div>
   );
 };

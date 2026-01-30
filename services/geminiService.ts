@@ -2,24 +2,29 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { SensorData } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const getAIClient = () => {
+  return new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+};
 
 export const getDiagnosticReport = async (sensorData: SensorData[], equipmentInfo: string) => {
   const latestData = sensorData[sensorData.length - 1];
   const history = sensorData.slice(-5);
 
   const prompt = `
-    Analyze the following HVAC telemetry for a Toronto residential property.
-    Equipment: ${equipmentInfo}
+    Analyze the following heating and cooling data for a Toronto home.
+    System Type: ${equipmentInfo}
     Current Data: ${JSON.stringify(latestData)}
     Recent History: ${JSON.stringify(history)}
 
-    Provide a professional diagnostic report including:
-    1. Potential component failure risks.
-    2. Maintenance recommendations tailored for GTA climate (considering humidity/cold extremes).
-    3. Efficiency optimizations.
+    Provide a simple review including:
+    1. Potential risks of things breaking soon.
+    2. Maintenance tips for the local Toronto weather (considering very cold or humid days).
+    3. Simple ways to save more money and energy.
+    
+    Use simple English. Do not use technical jargon or industry abbreviations.
   `;
 
+  const ai = getAIClient();
   const response = await ai.models.generateContent({
     model: 'gemini-3-pro-preview',
     contents: prompt,
@@ -34,9 +39,10 @@ export const getDiagnosticReport = async (sensorData: SensorData[], equipmentInf
 };
 
 export const checkRebateCompliance = async (customerData: any) => {
+  const ai = getAIClient();
   const response = await ai.models.generateContent({
     model: 'gemini-3-flash-preview',
-    contents: `Evaluate eligibility for the Enbridge HER+ Grant (Toronto/Ontario) based on this customer data: ${JSON.stringify(customerData)}. Highlight missing documentation.`,
+    contents: `Check if this home is eligible for energy rebates in Toronto/Ontario based on this data: ${JSON.stringify(customerData)}. List any missing papers or easy steps to take. Use simple English and avoid technical words.`,
     config: {
       responseMimeType: "application/json",
       responseSchema: {

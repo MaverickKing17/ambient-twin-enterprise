@@ -20,6 +20,10 @@ const RoiAnalytics: React.FC = () => {
     { name: 'Standard AC', cost: 185, fill: '#94a3b8' },
   ];
 
+  const handleGenerateProposal = () => {
+    alert("Proposal generated and sent to email.");
+  };
+
   return (
     <div className="p-10 space-y-12 bg-slate-50 dark:bg-[#0b0f1a] min-h-screen">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
@@ -159,7 +163,10 @@ const RoiAnalytics: React.FC = () => {
                    </div>
                  ))}
               </div>
-              <button className="w-full mt-8 py-5 bg-slate-900 dark:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-blue-500/20 hover:scale-[1.02] transition-all">
+              <button 
+                onClick={handleGenerateProposal}
+                className="w-full mt-8 py-5 bg-slate-900 dark:bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-blue-500/20 hover:scale-[1.02] transition-all"
+              >
                  Generate Proposal
               </button>
            </div>

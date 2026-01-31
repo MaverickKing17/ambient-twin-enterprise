@@ -12,6 +12,12 @@ const BrandingSettings: React.FC = () => {
     setTimeout(() => setIsSaved(false), 3000);
   };
 
+  const handleReset = () => {
+    setPartnerName('Toronto Premium HVAC');
+    setPrimaryColor('#2563eb');
+    alert("Settings reset to default.");
+  };
+
   return (
     <div className="p-10 max-w-7xl mx-auto space-y-12 bg-slate-50 dark:bg-[#0b0f1a] min-h-screen">
       <div className="space-y-2">
@@ -74,7 +80,10 @@ const BrandingSettings: React.FC = () => {
               </div>
 
               <div className="flex justify-end gap-4 pt-4">
-                <button className="px-8 py-4 bg-slate-200 dark:bg-white/10 rounded-2xl font-black text-xs uppercase tracking-widest text-slate-600 dark:text-white hover:bg-slate-300 transition-all">
+                <button 
+                  onClick={handleReset}
+                  className="px-8 py-4 bg-slate-200 dark:bg-white/10 rounded-2xl font-black text-xs uppercase tracking-widest text-slate-600 dark:text-white hover:bg-slate-300 transition-all"
+                >
                   Reset Defaults
                 </button>
                 <button 

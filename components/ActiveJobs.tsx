@@ -11,6 +11,10 @@ const ActiveJobs: React.FC = () => {
     { id: 'JOB-9215', customer: 'Linda Wu', address: '150 Burnhamthorpe Rd W, Mississauga', type: 'Upgrade Work', status: 'Waiting for Parts', priority: 'Medium', tech: 'Marcus V.', time: 'Est. 2 days' },
   ];
 
+  const handleAssignJob = () => {
+    alert("Opening Job Assignment Portal...");
+  };
+
   return (
     <div className="p-8 space-y-8">
       <div className="flex justify-between items-center">
@@ -18,7 +22,10 @@ const ActiveJobs: React.FC = () => {
           <h1 className="text-3xl font-bold">Current Work</h1>
           <p className="text-slate-500 dark:text-slate-400">Manage ongoing home comfort jobs and team schedules.</p>
         </div>
-        <button className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-200 dark:shadow-none hover:bg-blue-700 transition-all flex items-center gap-2">
+        <button 
+          onClick={handleAssignJob}
+          className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-blue-200 dark:shadow-none hover:bg-blue-700 transition-all flex items-center gap-2 active:scale-95"
+        >
           <Wrench className="w-4 h-4" />
           Assign New Job
         </button>

@@ -10,6 +10,14 @@ const Rebates: React.FC = () => {
     { name: 'Lee Heat Pump', address: 'Scarborough', amount: 7100, stage: 'Paid', completion: 100, alert: false },
   ];
 
+  const handleSubmitBatch = () => {
+    alert("Batch submitted to Enbridge Portal successfully.");
+  };
+
+  const handleStartApplication = () => {
+    alert("Starting new rebate application flow for Toronto region...");
+  };
+
   return (
     <div className="p-8 space-y-8">
       <div className="flex justify-between items-center">
@@ -22,7 +30,10 @@ const Rebates: React.FC = () => {
             <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase mb-1 tracking-widest">Total Savings Hub</div>
             <div className="text-2xl font-bold text-slate-900 dark:text-white">$142,500 CAD</div>
           </div>
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold shadow-xl shadow-blue-200 dark:shadow-none hover:bg-blue-700 transition-all flex items-center gap-2">
+          <button 
+            onClick={handleSubmitBatch}
+            className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold shadow-xl shadow-blue-200 dark:shadow-none hover:bg-blue-700 transition-all flex items-center gap-2 active:scale-95"
+          >
             <FileText className="w-4 h-4" />
             Submit Batch for Payment
           </button>
@@ -103,7 +114,12 @@ const Rebates: React.FC = () => {
                  <div className="mt-8 pt-6 border-t border-white/10 text-center">
                     <div className="text-3xl font-bold text-emerald-400 mb-1">$7,100</div>
                     <p className="text-[10px] text-slate-400 font-medium">Estimated Energy Rebate</p>
-                    <button className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20 active:scale-95">Start Application</button>
+                    <button 
+                      onClick={handleStartApplication}
+                      className="mt-6 w-full py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20 active:scale-95"
+                    >
+                      Start Application
+                    </button>
                  </div>
               </div>
            </div>

@@ -30,6 +30,17 @@ const Dashboard: React.FC = () => {
     }
   };
 
+  const handleDownloadReport = () => {
+    alert("Downloading Toronto Compliance Report... (This is a demo)");
+  };
+
+  const handleCheckSystems = () => {
+    // Trigger the AI diagnosis as the main check action
+    runGeminiDiagnosis();
+    const element = document.getElementById('ai-insight-panel');
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="bg-slate-50 dark:bg-[#0b0f1a] transition-colors duration-500">
       <header className="h-20 border-b border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#0b0f1a]/80 backdrop-blur-2xl sticky top-0 z-40 flex items-center justify-between px-10 shadow-sm">
@@ -83,11 +94,17 @@ const Dashboard: React.FC = () => {
             <p className="text-slate-500 dark:text-slate-400 font-medium text-lg">Toronto-wide home energy and rebate tracking system.</p>
           </div>
           <div className="flex gap-4 w-full md:w-auto">
-            <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm transition-all active:scale-[0.97]">
+            <button 
+              onClick={handleDownloadReport}
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 px-6 py-4 rounded-2xl text-sm font-bold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm transition-all active:scale-[0.97]"
+            >
               <Download className="w-4 h-4" />
               Download Report
             </button>
-            <button className="flex-1 md:flex-none bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/20 text-sm flex items-center justify-center gap-3 active:scale-[0.97]">
+            <button 
+              onClick={handleCheckSystems}
+              className="flex-1 md:flex-none bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-blue-500/20 text-sm flex items-center justify-center gap-3 active:scale-[0.97]"
+            >
               <Target className="w-4 h-4" />
               Check Systems
             </button>
@@ -163,7 +180,7 @@ const Dashboard: React.FC = () => {
           </div>
 
           <div className="space-y-10">
-            <div className="bg-gradient-to-br from-blue-700 to-indigo-900 dark:from-blue-600/20 dark:to-indigo-900/40 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden border border-white/10">
+            <div id="ai-insight-panel" className="bg-gradient-to-br from-blue-700 to-indigo-900 dark:from-blue-600/20 dark:to-indigo-900/40 rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden border border-white/10">
                <div className="absolute top-0 right-0 p-6">
                   <div className="bg-white/10 backdrop-blur-md rounded-2xl px-3 py-1.5 text-[10px] font-black text-white uppercase tracking-widest flex items-center gap-2">
                      <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
